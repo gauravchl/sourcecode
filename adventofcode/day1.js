@@ -8,4 +8,22 @@ function getResultingFrequency(input) {
   return frequencies.reduce((a, b) => (parseInt(a) + parseInt(b)))
 };
 
-console.log('Resulting Frequency:', getResultingFrequency(input));
+function getFirstRepeatingFrequency(input) {
+  const frequencies = input.trim().split('\n');
+
+  const frequencyRecord = [0];
+  let currentFrequency = 0;
+  let index = 0;
+
+  while(1) {
+    currentFrequency = currentFrequency + parseInt(frequencies[index]);
+    if (frequencyRecord.indexOf(currentFrequency) > -1) {
+      break;
+    }
+    frequencyRecord.push(currentFrequency);
+    index = index === frequencies.length - 1 ? 0 : index + 1;
+  }
+  return currentFrequency;
+}
+
+console.log('Resulting Frequency:', getResultingFrequency(input), 'First repeating frequency', getFirstRepeatingFrequency(input));
