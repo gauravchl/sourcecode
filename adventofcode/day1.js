@@ -10,17 +10,16 @@ function getResultingFrequency(input) {
 
 function getFirstRepeatingFrequency(input) {
   const frequencies = input.trim().split('\n');
-
-  const frequencyRecord = [0];
+  const frequencyRecord = new Set([0]);
   let currentFrequency = 0;
   let index = 0;
 
   while(1) {
     currentFrequency = currentFrequency + parseInt(frequencies[index]);
-    if (frequencyRecord.indexOf(currentFrequency) > -1) {
+    if (frequencyRecord.has(currentFrequency)) {
       break;
     }
-    frequencyRecord.push(currentFrequency);
+    frequencyRecord.add(currentFrequency);
     index = index === frequencies.length - 1 ? 0 : index + 1;
   }
   return currentFrequency;
